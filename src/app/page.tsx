@@ -1,19 +1,7 @@
 import { Search, People } from "@/assets/icons";
 import { SelectNone } from "@/assets/images";
 import { Messenger, MessengerProps } from "@/components";
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  InputBase,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Typography,
-} from "@mui/material";
-import { it } from "node:test";
+import { Box, Button, InputBase, List, Typography } from "@mui/material";
 
 const messengers: MessengerProps[] = [
   {
@@ -22,7 +10,7 @@ const messengers: MessengerProps[] = [
     content: "thank you so much",
     created_at: "11:30",
     status: true,
-    avatar: "",
+    avatar: "/images/Ellipse 1133.png",
   },
   {
     id: "2",
@@ -30,15 +18,15 @@ const messengers: MessengerProps[] = [
     content: "that'st it goodbye!",
     created_at: "09:36",
     status: false,
-    avatar: "",
+    avatar: "/images/Ellipse 1136.png",
   },
   {
     id: "3",
-    name: "Kim Jong Un",
-    content: "that'st it goodbye!",
-    created_at: "09:36",
+    name: "Vladimir Putin",
+    content: "Look what I found",
+    created_at: "08:36",
     status: true,
-    avatar: "",
+    avatar: "/images/Ellipse 1139.png",
   },
 ];
 
