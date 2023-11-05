@@ -1,95 +1,129 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { Search, People } from "@/assets/icons";
+import { SelectNone } from "@/assets/images";
+import { Messenger, MessengerProps } from "@/components";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  InputBase,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from "@mui/material";
+import { it } from "node:test";
+
+const messengers: MessengerProps[] = [
+  {
+    id: "1",
+    name: "Donald Trump",
+    content: "thank you so much",
+    created_at: "11:30",
+    status: true,
+    avatar: "",
+  },
+  {
+    id: "2",
+    name: "Kim Jong Un",
+    content: "that'st it goodbye!",
+    created_at: "09:36",
+    status: false,
+    avatar: "",
+  },
+  {
+    id: "3",
+    name: "Kim Jong Un",
+    content: "that'st it goodbye!",
+    created_at: "09:36",
+    status: true,
+    avatar: "",
+  },
+];
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main>
+      <Box display="flex">
+        <Box
+          flexShrink={0}
+          sx={{
+            borderLeft: "1px solid #eee",
+            borderRight: "1px solid #eee",
+            padding: "35px 29px",
+            boxShadow: 1,
+            bgcolor: "#F0F4FA",
+            width: { xs: "100%", md: "384px" },
+          }}
+        >
+          <Typography fontSize={32} fontWeight="bolder">
+            Chats
+          </Typography>
+          <Box
+            px={2}
+            py={1}
+            marginTop="35px"
+            display="flex"
+            alignItems="center"
+            sx={{
+              borderRadius: 6,
+              background: "#EAF2FE",
+              color: "#709CE6",
+            }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+            <Search />
+            <InputBase
+              placeholder="Search"
+              fullWidth
+              sx={{
+                ml: 1,
+              }}
             />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+          </Box>
+          <Button
+            sx={{
+              width: "100%",
+              marginTop: "20px",
+              color: "#727375",
+              py: 1.5,
+              border: "2px solid #eee",
+              borderRadius: "12px",
+              fontWeight: "500",
+              bgcolor: "#FFF",
+            }}
+          >
+            <People />
+            {" Add a new group"}
+          </Button>
+          <Typography mt="30px" mb={1} sx={{ userSelect: "none" }}>
+            All chat
+          </Typography>
+          <List>
+            {messengers &&
+              messengers.map((item) => (
+                <Messenger
+                  key={item.id}
+                  avatar={item.avatar}
+                  content={item.content}
+                  created_at={item.created_at}
+                  name={item.name}
+                  id={item.id}
+                  status={item.status}
+                ></Messenger>
+              ))}
+          </List>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="100vh"
+          sx={{ width: { xs: 0, md: "100%" } }}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          <SelectNone />
+        </Box>
+      </Box>
     </main>
-  )
+  );
 }
